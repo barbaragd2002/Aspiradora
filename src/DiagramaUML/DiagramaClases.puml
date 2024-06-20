@@ -1,0 +1,94 @@
+@startuml
+
+class Habitacion { 
+-Azulejo [][] superficie
+-boolean [][] muebles
+-Dimension dimension
+-Posicion estacionRecarga
++Habitacion(Dimension dimension)
++Azulejo[][] getSuperficie()
++boolean[][] getMuebles()
++Dimension getDimension ()
++void generarSuperficie(int ancho, int largo, int porcentajeSuciedad)
++int getAncho()
++int getAlto()
+}
+
+Class Azulejo {  
+-int nivelSuciedad
++Azulejo(int nivelSuciedad)}
++int getNivelSuciedad()
++void setNivelSuciedad(int nivelSuciedad)
++void limpiar()
++void ensuciar(int cantidad)
+}
+
+class Aspiradora { 
+-int pasosRealizados
+-int limpiezaRealizada
+-CapacidadBasura capacidadBasura
+-Bateria bateria
+-Posicion posicion
++Aspiradora(Bateria bateria, int capacidadBasura)
++getPosicion()
++getPasosRealizados()
++getLimpiezaRealizada()
++CapacidadBasura getCapacidadBasura()
++Bateria getBateria()
++void setPasosRealizados(int pasosRealizados)
++void setLimpiezaCasilla(int limpiezaRealizada)
+}
+
+
+class Gato { 
+-Posicion posicion
++Gato(int x, int y)
++Posicion getPosicion()
++void mover(int nuevaX, int nuevaY)
+}
+
+class Posicion { 
+-int x
+-int y
++Posicion(int x, int y)
++int getX()
++int getY()
++void setPosicion(int x, int y)
++void setX(int x)
++void setY(int y)
+}
+
+class Bateria { 
+-int nivelBateria
+-int CAPACIDAD_MAXIMA
++void descargar()
++void recargar()
++int getNivelBateria()
++int boolean estaDescargada()
+}	
+class CapacidadDeBasura { 
+-int nivelBasura
+-int maximoNivelBasura
++CapacidadBasura(int maximoNivelBasura)
++void incrementar()
++void vaciar()
++boolean estallena()
++int getNivelBasura()
++int getMaximoNivelBasura()
+}	
+
+
+
+Habitacion *-- Azulejo
+Habitacion o-- Aspiradora
+Habitacion o-- Gato
+Gato--Posicion
+Azulejo o--Elementos 
+Azulejo -- Gato
+Azulejo --> Posicion
+Aspiradora -- Posicion
+Aspiradora o-- Bateria
+Aspiradora --> CapacidadDeBasura
+
+
+@enduml
